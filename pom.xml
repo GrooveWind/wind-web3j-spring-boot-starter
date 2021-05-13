@@ -18,7 +18,7 @@
         <java.version>1.8</java.version>
 
         <web3j.version>4.8.4</web3j.version>
-        <okhttp3.version>4.3.1</okhttp3.version>
+        <okhttp.version>4.3.1</okhttp.version>
         <jackson.version>2.11.2</jackson.version>
     </properties>
 
@@ -46,17 +46,17 @@
         </dependency>
         <dependency>
             <groupId>org.web3j</groupId>
-            <artifactId>utils</artifactId>
-            <version>${web3j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.web3j</groupId>
             <artifactId>abi</artifactId>
             <version>${web3j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.web3j</groupId>
             <artifactId>rlp</artifactId>
+            <version>${web3j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>utils</artifactId>
             <version>${web3j.version}</version>
         </dependency>
         <!-- web3j end -->
@@ -74,36 +74,27 @@
         </dependency>
         <!-- rxjava end -->
 
-        <!-- okhttp3 begin -->
+        <!-- okhttp begin -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>${okhttp3.version}</version>
+            <version>${okhttp.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>logging-interceptor</artifactId>
-            <version>${okhttp3.version}</version>
-        </dependency>
-        <!-- okhttp3 end -->
+        <!-- okhttp end -->
 
         <!-- jackson begin -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
         <!-- jackson end -->
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -113,26 +104,5 @@
         </dependency>
 
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>ethereum</id>
-            <url>https://dl.bintray.com/ethereum/maven/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 
 </project>
