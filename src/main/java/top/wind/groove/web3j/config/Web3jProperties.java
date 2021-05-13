@@ -32,6 +32,11 @@ public class Web3jProperties {
          */
         private String credentialsPassword;
 
+        /**
+         * Ethereum wallet private key
+         */
+        private String credentialsPrivateKey;
+
     }
 
 }

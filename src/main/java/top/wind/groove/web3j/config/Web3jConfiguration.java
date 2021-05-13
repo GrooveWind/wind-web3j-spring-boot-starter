@@ -1,5 +1,6 @@
 package top.wind.groove.web3j.config;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -47,18 +48,18 @@ public class Web3jConfiguration {
     @Bean
     @ConditionalOnMissingBean(Credentials.class)
     public Credentials credentials() {
-        String credentialsPath = web3jProperties.getContract().getCredentialsPath();
-        if (credentialsPath == null || "".equals(credentialsPath.trim())) {
-            return null;
-        }
-
-        String credentialsPassword = web3jProperties.getContract().getCredentialsPassword();
-        if (credentialsPassword == null || "".equals(credentialsPassword.trim())) {
-            return null;
-        }
 
         try {
-            credentials = WalletUtils.loadCredentials(credentialsPassword, credentialsPath);
+            String credentialsPath = web3jProperties.getContract().getCredentialsPath();
+            String credentialsPassword = web3jProperties.getContract().getCredentialsPassword();
+            String credentialsPrivateKey = web3jProperties.getContract().getCredentialsPrivateKey();
+
+            if (StringUtils.isNotBlank(credentialsPath) && StringUtils.isNotBlank(credentialsPassword)) {
+                credentials = WalletUtils.loadCredentials(credentialsPassword, credentialsPath);
+            } else if (StringUtils.isNotBlank(credentialsPrivateKey)) {
+                credentials = Credentials.create(credentialsPrivateKey);
+            }
+
             return credentials;
         } catch (Exception e) {
             e.printStackTrace();
